@@ -1,0 +1,137 @@
+/* ==========================================================================
+   hero.css
+   Full-viewport intro. The soft accent glow behind the copy is offset by
+   the useParallax hook's mousemove-driven { x, y } values (applied inline
+   via Hero.jsx); this file only owns the glow's base size/centering and
+   static visual treatment. Respects prefers-reduced-motion via the hook
+   itself returning a static { x: 0, y: 0 } offset, so no CSS-level
+   transform override is required here.
+   ========================================================================== */
+
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding-top: var(--nav-height-mobile);
+  background: var(--gradient-surface);
+}
+
+.hero__glow {
+  position: absolute;
+  top: -20%;
+  left: 50%;
+  width: 60vw;
+  height: 60vw;
+  max-width: 900px;
+  max-height: 900px;
+  background: var(--gradient-accent);
+  filter: blur(120px);
+  opacity: 0.22;
+  border-radius: var(--radius-full);
+  pointer-events: none;
+  will-change: transform;
+}
+
+.hero__inner {
+  position: relative;
+  z-index: var(--z-content);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-4);
+  max-width: 760px;
+}
+
+.hero__title {
+  margin-top: var(--space-2);
+}
+
+.hero__subtitle {
+  font-size: var(--fs-md);
+  color: var(--color-text-secondary);
+  max-width: 56ch;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-top: var(--space-3);
+}
+
+.hero__cta {
+  padding: 0.85em 1.6em;
+  border-radius: var(--radius-full);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-sm);
+  transition:
+    background-color var(--duration-fast) var(--ease-standard),
+    color var(--duration-fast) var(--ease-standard),
+    border-color var(--duration-fast) var(--ease-standard),
+    transform var(--duration-fast) var(--ease-standard);
+}
+
+.hero__cta--primary {
+  background: var(--color-accent);
+  color: var(--color-text-on-accent);
+}
+
+.hero__cta--primary:hover,
+.hero__cta--primary:focus-visible {
+  background: var(--color-accent-hover);
+  transform: translateY(-2px);
+}
+
+.hero__cta--secondary {
+  border: var(--border-width) solid var(--color-border-strong);
+  color: var(--color-text);
+}
+
+.hero__cta--secondary:hover,
+.hero__cta--secondary:focus-visible {
+  border-color: var(--color-accent-border);
+  color: var(--color-accent);
+  transform: translateY(-2px);
+}
+
+.hero__scroll-cue {
+  position: absolute;
+  bottom: var(--space-6);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 40px;
+  border: var(--border-width) solid var(--color-border-strong);
+  border-radius: var(--radius-full);
+  display: flex;
+  justify-content: center;
+  padding-top: var(--space-2);
+}
+
+.hero__scroll-cue span {
+  width: 4px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: var(--color-accent);
+  animation: soft-pulse 1.8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__scroll-cue span {
+    animation: none;
+  }
+}
+
+@media (max-width: 479px) {
+  .hero__actions {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .hero__cta {
+    text-align: center;
+  }
+}

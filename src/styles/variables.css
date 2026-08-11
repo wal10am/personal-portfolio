@@ -1,0 +1,159 @@
+/* ==========================================================================
+   variables.css
+   Global design tokens (CSS custom properties).
+   Every other stylesheet in this project should read colors, spacing,
+   type, radii, shadows, timing, and z-index values from here rather than
+   hardcoding raw values. This keeps the whole site themeable from one file.
+   ========================================================================== */
+
+:root {
+  /* ---------------------------------------------------------------------
+     Breakpoints (reference only — CSS custom properties cannot be used
+     inside @media queries, so these are documented here and the literal
+     pixel values are duplicated in responsive.css at the points below).
+       --bp-xs:   320px   (small phones, minimum supported width)
+       --bp-sm:   480px   (large phones)
+       --bp-md:   768px   (tablets / nav breakpoint, hamburger <-> full nav)
+       --bp-lg:   1024px  (small laptops)
+       --bp-xl:   1280px  (desktops)
+       --bp-2xl:  1440px  (large desktops and up — layout caps out here)
+     --------------------------------------------------------------------- */
+
+  /* ---------------------------------------------------------------------
+     Color — base surfaces
+     --------------------------------------------------------------------- */
+  --color-bg: #14161a;
+  --color-bg-raised: #191c22;
+  --color-surface: #1c1f26;
+  --color-surface-alt: #232631;
+  --color-surface-hover: #2a2e3a;
+  --color-border: #2e323d;
+  --color-border-strong: #3a3f4d;
+
+  /* Accent — neutral blue, not tied to any third-party brand color */
+  --color-accent: #3fa9f5;
+  --color-accent-hover: #63bbf7;
+  --color-accent-active: #2d8fd6;
+  --color-accent-muted: rgba(63, 169, 245, 0.14);
+  --color-accent-border: rgba(63, 169, 245, 0.35);
+
+  /* Text */
+  --color-text: #f5f6f8;
+  --color-text-secondary: #c3c8d1;
+  --color-text-muted: #8b93a3;
+  --color-text-faint: #5c6272;
+  --color-text-on-accent: #0b0d11;
+
+  /* Feedback / status */
+  --color-success: #4cc38a;
+  --color-warning: #f5b93f;
+  --color-danger: #f56a5b;
+
+  /* ---------------------------------------------------------------------
+     Gradients & overlays
+     --------------------------------------------------------------------- */
+  --gradient-accent: linear-gradient(135deg, #3fa9f5 0%, #6f6ff0 100%);
+  --gradient-surface: linear-gradient(180deg, #1c1f26 0%, #14161a 100%);
+  --overlay-scrim: rgba(10, 11, 14, 0.72);
+
+  /* ---------------------------------------------------------------------
+     Typography
+     --------------------------------------------------------------------- */
+  --font-sans:
+    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+  --font-mono:
+    'SFMono-Regular', ui-monospace, 'JetBrains Mono', Menlo, Consolas,
+    'Liberation Mono', monospace;
+
+  --fs-xs: 0.75rem; /* 12px */
+  --fs-sm: 0.875rem; /* 14px */
+  --fs-base: 1rem; /* 16px */
+  --fs-md: 1.125rem; /* 18px */
+  --fs-lg: 1.25rem; /* 20px */
+  --fs-xl: 1.5rem; /* 24px */
+  --fs-2xl: 1.875rem; /* 30px */
+  --fs-3xl: 2.375rem; /* 38px */
+  --fs-4xl: 3rem; /* 48px */
+  --fs-5xl: 3.75rem; /* 60px */
+
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  --lh-tight: 1.15;
+  --lh-snug: 1.35;
+  --lh-normal: 1.6;
+  --lh-relaxed: 1.75;
+
+  --ls-tight: -0.02em;
+  --ls-normal: 0;
+  --ls-wide: 0.08em;
+  --ls-widest: 0.18em;
+
+  /* ---------------------------------------------------------------------
+     Spacing scale (4px base unit)
+     --------------------------------------------------------------------- */
+  --space-0: 0;
+  --space-1: 0.25rem; /* 4px */
+  --space-2: 0.5rem; /* 8px */
+  --space-3: 0.75rem; /* 12px */
+  --space-4: 1rem; /* 16px */
+  --space-5: 1.5rem; /* 24px */
+  --space-6: 2rem; /* 32px */
+  --space-7: 2.5rem; /* 40px */
+  --space-8: 3rem; /* 48px */
+  --space-9: 4rem; /* 64px */
+  --space-10: 5rem; /* 80px */
+  --space-11: 6rem; /* 96px */
+  --space-12: 8rem; /* 128px */
+
+  /* ---------------------------------------------------------------------
+     Layout
+     --------------------------------------------------------------------- */
+  --container-max: 1200px;
+  --container-padding-inline: var(--space-5);
+  --nav-height: 72px;
+  --nav-height-mobile: 64px;
+  --section-padding-block: var(--space-11);
+  --section-padding-block-mobile: var(--space-8);
+
+  /* ---------------------------------------------------------------------
+     Radii, borders, shadows
+     --------------------------------------------------------------------- */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 999px;
+
+  --border-width: 1px;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 20px 48px rgba(0, 0, 0, 0.5);
+  --shadow-accent-glow: 0 0 32px rgba(63, 169, 245, 0.25);
+
+  /* ---------------------------------------------------------------------
+     Motion
+     --------------------------------------------------------------------- */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --duration-fast: 150ms;
+  --duration-base: 250ms;
+  --duration-slow: 450ms;
+  --duration-reveal: 700ms;
+
+  /* ---------------------------------------------------------------------
+     Z-index scale
+     --------------------------------------------------------------------- */
+  --z-base: 0;
+  --z-content: 1;
+  --z-nav: 100;
+  --z-scroll-progress: 110;
+  --z-overlay: 200;
+  --z-modal: 300;
+}

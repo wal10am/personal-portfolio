@@ -1,0 +1,93 @@
+/* ==========================================================================
+   skills.css
+   Styles for the "02 Skills" section: a responsive grid of skill-category
+   cards (uses the shared .grid/.grid--4 utility from layout.css), each
+   containing a heading and a wrapped list of skill chips (uses the shared
+   .cluster utility for wrapping/gap). Reveal-in animation is driven by the
+   useScrollReveal hook toggling the .is-visible class; all motion is
+   guarded by prefers-reduced-motion as a CSS-level backstop in addition to
+   the hook itself skipping the animated state.
+   ========================================================================== */
+
+.skills-grid {
+  margin-top: var(--space-2);
+}
+
+.skills-category {
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-sm);
+
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity var(--duration-slow) var(--ease-out),
+    transform var(--duration-slow) var(--ease-out),
+    border-color var(--duration-base) var(--ease-standard),
+    box-shadow var(--duration-base) var(--ease-standard);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.skills-category.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.skills-category:hover,
+.skills-category:focus-within {
+  border-color: var(--color-accent-border);
+  box-shadow: var(--shadow-md);
+}
+
+.skills-category-title {
+  font-size: var(--fs-md);
+  font-weight: var(--fw-semibold);
+  color: var(--color-text);
+  margin-bottom: var(--space-4);
+}
+
+.skills-chip-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: var(--space-2);
+}
+
+.skills-chip {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  color: var(--color-text-secondary);
+  background: var(--color-surface-alt);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-full);
+  padding: 0.4em 0.9em;
+  line-height: 1;
+  white-space: nowrap;
+  transition:
+    color var(--duration-fast) var(--ease-standard),
+    border-color var(--duration-fast) var(--ease-standard),
+    background-color var(--duration-fast) var(--ease-standard);
+}
+
+.skills-chip:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent-border);
+  background: var(--color-accent-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skills-category {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 479px) {
+  .skills-category {
+    padding: var(--space-4);
+  }
+}

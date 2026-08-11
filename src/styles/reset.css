@@ -1,0 +1,155 @@
+/* ==========================================================================
+   reset.css
+   A modern, opinionated CSS reset. Loaded once, globally, before
+   typography.css / layout.css / component styles.
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  min-height: 100vh;
+  line-height: var(--lh-normal, 1.6);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  background-color: var(--color-bg, #14161a);
+  color: var(--color-text, #f5f6f8);
+  overflow-x: hidden;
+}
+
+#root {
+  isolation: isolate;
+  min-height: 100vh;
+}
+
+img,
+picture,
+svg,
+video,
+canvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+fieldset {
+  border: none;
+}
+
+/* Avoid text overflows and keep long tokens (urls, emails) from breaking layout */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+li {
+  overflow-wrap: break-word;
+}
+
+/* Make headings and interactive elements inherit font families explicitly
+   (some browsers use different defaults for form controls / headings). */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+}
+
+/* Remove built-in form typography/color styling */
+select {
+  appearance: none;
+}
+
+/* A11y: keep default focus visible, but let focus-visible.css-like rules
+   in nav.css/typography.css refine the exact treatment per-component. */
+:focus {
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Reduce motion globally for anyone who has requested it at the OS level.
+   Individual components/hooks (useParallax, useTilt, useScrollReveal) must
+   also check this preference in JS before computing transforms. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Root stacking + full-bleed background so theme color is consistent
+   even before layout.css defines the page container. */
+html,
+body {
+  width: 100%;
+  background-color: var(--color-bg, #14161a);
+}

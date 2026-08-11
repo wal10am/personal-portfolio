@@ -1,0 +1,15 @@
+/* ==========================================================================
+   index.css
+   Aggregates the global/shared stylesheets in cascade order. Imported once
+   by src/main.jsx. Section-specific stylesheets (hero.css, about.css,
+   skills.css, etc.) are NOT imported here — each component imports its own
+   matching CSS file directly.
+   ========================================================================== */
+
+@import './variables.css';
+@import './reset.css';
+@import './typography.css';
+@import './layout.css';
+@import './nav.css';
+@import './animations.css';
+@import './responsive.css';

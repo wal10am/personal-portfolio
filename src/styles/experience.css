@@ -1,0 +1,131 @@
+/* ==========================================================================
+   experience.css
+   Styles for the "03 Experience" section: a vertical timeline of role
+   entries, each with a marker dot + connecting line, a title/company/dates
+   heading, and a bullet list of accomplishments. Reveal-in animation is
+   driven by the useScrollReveal hook toggling the .is-visible class; all
+   motion is guarded by prefers-reduced-motion as a CSS-level backstop in
+   addition to the hook itself skipping the animated state.
+   ========================================================================== */
+
+.experience-timeline {
+  position: relative;
+  list-style: none;
+  margin: var(--space-2) 0 0;
+  padding: 0;
+  max-width: 760px;
+}
+
+.experience-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--space-6) 1fr;
+  gap: 0 var(--space-5);
+  padding-bottom: var(--space-8);
+
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity var(--duration-slow) var(--ease-out),
+    transform var(--duration-slow) var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.experience-item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.experience-item--last,
+.experience-item:last-child {
+  padding-bottom: 0;
+}
+
+.experience-item-marker {
+  position: relative;
+  display: block;
+  width: var(--space-4);
+  height: var(--space-4);
+  margin-top: 0.35em;
+  border-radius: var(--radius-full);
+  background: var(--color-accent);
+  box-shadow: 0 0 0 4px var(--color-accent-muted);
+}
+
+.experience-item:not(.experience-item--last):not(:last-child) .experience-item-marker::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: var(--border-width);
+  height: calc(100% + var(--space-8) - 0.35em);
+  background: var(--color-border);
+  transform: translateX(-50%);
+}
+
+.experience-item-content {
+  min-width: 0;
+}
+
+.experience-item-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.experience-item-title {
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-semibold);
+  color: var(--color-text);
+}
+
+.experience-item-dates {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.experience-item-company {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--color-accent);
+  margin-top: var(--space-1);
+}
+
+.experience-item-bullets {
+  margin: var(--space-3) 0 0;
+  padding-left: 1.1em;
+  color: var(--color-text-secondary);
+}
+
+.experience-item-bullets li {
+  line-height: var(--lh-relaxed);
+}
+
+.experience-item-bullets li + li {
+  margin-top: var(--space-2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .experience-item {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 479px) {
+  .experience-item {
+    grid-template-columns: var(--space-3) 1fr;
+    gap: 0 var(--space-4);
+  }
+
+  .experience-item-heading {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-1);
+  }
+}

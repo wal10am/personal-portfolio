@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page not found — [PLACEHOLDER: Your Name]</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <style>
+      :root {
+        color-scheme: dark;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #14161a;
+        color: #f5f6f8;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+          Helvetica, Arial, sans-serif;
+        text-align: center;
+        padding: 1.5rem;
+      }
+
+      .card {
+        max-width: 32rem;
+        padding: 2.5rem 2rem;
+        background-color: #1c1f26;
+        border: 1px solid #2e323d;
+        border-radius: 16px;
+        box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5);
+      }
+
+      .code {
+        font-family: 'SFMono-Regular', ui-monospace, 'JetBrains Mono', Menlo, Consolas,
+          'Liberation Mono', monospace;
+        font-size: 0.875rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        color: #3fa9f5;
+        background: rgba(63, 169, 245, 0.14);
+        border: 1px solid rgba(63, 169, 245, 0.35);
+        border-radius: 999px;
+        padding: 0.3em 0.9em;
+        display: inline-block;
+        margin-bottom: 1.25rem;
+      }
+
+      h1 {
+        margin: 0 0 0.75rem;
+        font-size: 1.75rem;
+        line-height: 1.2;
+      }
+
+      p {
+        margin: 0 0 1.75rem;
+        color: #c3c8d1;
+        line-height: 1.6;
+      }
+
+      a.home-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.7em 1.4em;
+        border-radius: 999px;
+        background-color: #3fa9f5;
+        color: #0b0d11;
+        font-weight: 600;
+        text-decoration: none;
+        transition: background-color 0.15s ease, transform 0.15s ease;
+      }
+
+      a.home-link:hover,
+      a.home-link:focus-visible {
+        background-color: #63bbf7;
+        transform: translateY(-1px);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        a.home-link {
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="card">
+      <span class="code">404</span>
+      <h1>Page not found</h1>
+      <p>The page you&rsquo;re looking for doesn&rsquo;t exist or may have moved.</p>
+      <a class="home-link" href="/">&larr; Back to home</a>
+    </main>
+  </body>
+</html>

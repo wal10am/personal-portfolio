@@ -1,0 +1,167 @@
+/* ==========================================================================
+   animations.css
+   Shared motion primitives for the site: scroll-reveal keyframes/utility
+   classes, baseline hover transitions for interactive elements (nav links,
+   project cards, and other focusable/hoverable elements in general), and a
+   site-wide prefers-reduced-motion backstop.
+
+   Scroll-reveal contract (see useScrollReveal.js + About/Skills/Experience/
+   Testimonials/Education components): the hook returns { ref, visible } and
+   components render `className="<block>${visible ? ' is-visible' : ''}"`,
+   optionally setting `--reveal-delay` (custom property) or an inline
+   `transitionDelay` for stagger. Skills/Experience/Testimonials already
+   define their own opacity/transform pair locally per-block; the `.reveal`
+   utility below is the same pattern generalized so any current or future
+   section (About, Education, Contact, ...) can opt in by adding the
+   `reveal` class to its ref'd element instead of redeclaring the rule.
+
+   Content is never hidden purely behind JS: the hook's initial `visible`
+   state is only ever a class *addition* on top of already-rendered markup,
+   and every hidden/animated state here is paired with a
+   prefers-reduced-motion override further down that snaps everything to
+   its final, fully visible state with no transition.
+   ========================================================================== */
+
+/* ---------------------------------------------------------------------
+   Shared keyframes
+   Available for any component that prefers `animation:` over a
+   transition-driven reveal (e.g. Hero's entrance, decorative accents).
+   --------------------------------------------------------------------- */
+@keyframes reveal-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes reveal-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes soft-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+
+/* ---------------------------------------------------------------------
+   Generic scroll-reveal utility
+   Opt-in pair for the useScrollReveal hook: apply `reveal` to the ref'd
+   element; the hook toggles `is-visible` once the element enters the
+   viewport. Supports the same `--reveal-delay` stagger custom property
+   used by skills.css / experience.css.
+   --------------------------------------------------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity var(--duration-slow) var(--ease-out),
+    transform var(--duration-slow) var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal--fade {
+  transform: none;
+}
+
+.reveal--fade.is-visible {
+  transform: none;
+}
+
+/* ---------------------------------------------------------------------
+   Baseline hover/focus transitions
+   A consistent default so any interactive element gets a smooth color/
+   transform change on hover or keyboard focus even before a
+   component-specific stylesheet adds its own (nav.css and projects.css
+   already define richer, element-specific hover treatment for
+   .nav__link / .project-card; this is the shared floor beneath them).
+   --------------------------------------------------------------------- */
+a,
+button,
+.nav__link,
+.project-card,
+.project-card-link,
+[class*='-card'],
+[class*='-chip'] {
+  transition:
+    color var(--duration-fast) var(--ease-standard),
+    background-color var(--duration-fast) var(--ease-standard),
+    border-color var(--duration-fast) var(--ease-standard),
+    box-shadow var(--duration-base) var(--ease-standard),
+    transform var(--duration-base) var(--ease-standard);
+}
+
+/* Nav link underline sweep + project card lift on hover/focus. */
+.nav__link:hover,
+.nav__link:focus-visible {
+  transform: translateY(-1px);
+}
+
+.project-card:hover,
+.project-card:focus-within {
+  transform: translateY(-4px);
+}
+
+/* ---------------------------------------------------------------------
+   Smooth in-page anchor scrolling (nav links, "back to top", etc.)
+   --------------------------------------------------------------------- */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ---------------------------------------------------------------------
+   prefers-reduced-motion: reduce
+   Site-wide backstop. Individual components (Skills, Experience,
+   Testimonials, Projects, Nav) already guard their own animated
+   properties locally; this block guarantees the same outcome — instant,
+   fully visible, non-transformed content — for every element on the
+   page, including any future section that forgets to add its own guard,
+   and covers the useParallax/useTilt/useScrollReveal hooks' inline
+   transform styles too since those hooks are expected to check
+   `window.matchMedia('(prefers-reduced-motion: reduce)')` and no-op.
+   --------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal,
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .nav__link:hover,
+  .nav__link:focus-visible,
+  .project-card:hover,
+  .project-card:focus-within {
+    transform: none;
+  }
+}

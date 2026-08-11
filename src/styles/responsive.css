@@ -1,0 +1,164 @@
+/* ==========================================================================
+   responsive.css
+   Media queries tying layout.css and nav.css together across the
+   supported range, 320px through 1440px+. Mobile-first: base rules in
+   layout.css/nav.css target the smallest (320px) case, and each query
+   below progressively enhances from there.
+
+   Breakpoints (kept in sync with the reference list in variables.css):
+     xs   320px  – minimum supported width
+     sm   480px  – large phones
+     md   768px  – tablets / nav switches from hamburger to full links
+     lg   1024px – small laptops
+     xl   1280px – desktops
+     2xl  1440px – large desktops and up, layout width caps out
+   ========================================================================== */
+
+/* ---------------------------------------------------------------------
+   xs: 320px – 479px (base / smallest supported phones)
+   Base styles elsewhere already target this range; here we just tighten
+   spacing further for the very smallest devices.
+   --------------------------------------------------------------------- */
+@media (max-width: 359px) {
+  :root {
+    --container-padding-inline: var(--space-4);
+  }
+
+  .section {
+    padding-block: var(--space-7);
+  }
+
+  .nav__brand {
+    font-size: var(--fs-sm);
+  }
+}
+
+/* ---------------------------------------------------------------------
+   sm: 480px and up – large phones
+   --------------------------------------------------------------------- */
+@media (min-width: 480px) {
+  .grid--2,
+  .grid--3,
+  .grid--4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ---------------------------------------------------------------------
+   md: 768px and up – tablets. This is the nav breakpoint: switch from
+   the off-canvas hamburger menu to the inline desktop link list.
+   --------------------------------------------------------------------- */
+@media (min-width: 768px) {
+  :root {
+    --container-padding-inline: var(--space-6);
+  }
+
+  .nav {
+    height: var(--nav-height);
+  }
+
+  .nav__toggle {
+    display: none;
+  }
+
+  .nav__links {
+    position: static;
+    inset: auto;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-6);
+    padding: 0;
+    background: transparent;
+    border-top: none;
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+    transition: none;
+  }
+
+  .nav__links--open .nav__link {
+    width: auto;
+    padding-block: var(--space-2);
+    font-size: var(--fs-sm);
+    border-bottom: none;
+  }
+
+  body.nav-scroll-lock {
+    overflow: auto;
+  }
+
+  .section {
+    scroll-margin-top: var(--nav-height);
+  }
+
+  .grid--3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .grid--4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ---------------------------------------------------------------------
+   lg: 1024px and up – small laptops
+   --------------------------------------------------------------------- */
+@media (min-width: 1024px) {
+  .section {
+    padding-block: var(--section-padding-block);
+  }
+
+  .grid--4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .section__header {
+    max-width: 720px;
+  }
+}
+
+/* ---------------------------------------------------------------------
+   xl: 1280px and up – desktops
+   --------------------------------------------------------------------- */
+@media (min-width: 1280px) {
+  :root {
+    --container-padding-inline: var(--space-7);
+  }
+
+  .nav__links {
+    gap: var(--space-8);
+  }
+}
+
+/* ---------------------------------------------------------------------
+   2xl: 1440px and up – large desktops. Layout width caps at
+   --container-max/--container--wide; extra viewport just adds side
+   padding via the auto margins on .container rather than stretching
+   content indefinitely.
+   --------------------------------------------------------------------- */
+@media (min-width: 1440px) {
+  :root {
+    --container-padding-inline: var(--space-8);
+  }
+
+  .container--wide {
+    max-width: 1360px;
+  }
+}
+
+/* ---------------------------------------------------------------------
+   Fine-grained: collapse to a single column below the tablet breakpoint
+   regardless of grid variant, so multi-column sections never overflow
+   the 320px floor.
+   --------------------------------------------------------------------- */
+@media (max-width: 767px) {
+  .grid--2,
+  .grid--3,
+  .grid--4 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .section__header {
+    max-width: 100%;
+  }
+}

@@ -1,0 +1,252 @@
+/* ==========================================================================
+   nav.css
+   Fixed top navigation bar. Styled for desktop (inline link list) and a
+   mobile hamburger menu state, driven by the classes below. Expected
+   markup shape (see Nav.jsx):
+
+     <header class="nav">
+       <div class="nav__inner container">
+         <a class="nav__brand" href="#top">[PLACEHOLDER: name/logo]</a>
+         <button class="nav__toggle" aria-expanded="false" aria-label="Toggle menu">
+           <span class="nav__toggle-bar"></span>
+           <span class="nav__toggle-bar"></span>
+           <span class="nav__toggle-bar"></span>
+         </button>
+         <ul class="nav__links">
+           <li><a class="nav__link nav__link--active" href="#about">About</a></li>
+           ...
+         </ul>
+       </div>
+     </header>
+
+   The mobile menu open/closed state is toggled by adding/removing
+   `.nav__links--open` (and `.nav--menu-open` on the header, used to lock
+   scroll / dim content) from React state — see useScrollSpy.js for the
+   active-link tracking that drives `.nav__link--active`.
+   ========================================================================== */
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-nav);
+  height: var(--nav-height-mobile);
+  display: flex;
+  align-items: center;
+  background: rgba(20, 22, 26, 0.72);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  border-bottom: var(--border-width) solid var(--color-border);
+  transition: background-color var(--duration-base) var(--ease-standard);
+}
+
+.nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.nav__brand {
+  font-family: var(--font-mono);
+  font-size: var(--fs-md);
+  font-weight: var(--fw-semibold);
+  color: var(--color-text);
+  letter-spacing: var(--ls-tight);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.nav__brand:hover,
+.nav__brand:focus-visible {
+  color: var(--color-accent);
+}
+
+.nav__brand-mark {
+  color: var(--color-accent);
+}
+
+/* ---------------------------------------------------------------------
+   Desktop link list
+   --------------------------------------------------------------------- */
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.nav__link {
+  position: relative;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--color-text-secondary);
+  padding-block: var(--space-2);
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+
+.nav__link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: var(--color-accent);
+  border-radius: var(--radius-full);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--duration-base) var(--ease-standard);
+}
+
+.nav__link:hover,
+.nav__link:focus-visible {
+  color: var(--color-text);
+}
+
+.nav__link:hover::after,
+.nav__link:focus-visible::after {
+  transform: scaleX(1);
+}
+
+/* Active section highlight, applied by useScrollSpy-driven state */
+.nav__link--active {
+  color: var(--color-text);
+}
+
+.nav__link--active::after {
+  transform: scaleX(1);
+}
+
+.nav__cta {
+  margin-left: var(--space-2);
+  padding: 0.55em 1.2em;
+  border-radius: var(--radius-full);
+  border: var(--border-width) solid var(--color-accent-border);
+  background: var(--color-accent-muted);
+  color: var(--color-accent);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  transition:
+    background-color var(--duration-fast) var(--ease-standard),
+    color var(--duration-fast) var(--ease-standard),
+    transform var(--duration-fast) var(--ease-standard);
+}
+
+.nav__cta:hover,
+.nav__cta:focus-visible {
+  background: var(--color-accent);
+  color: var(--color-text-on-accent);
+  transform: translateY(-1px);
+}
+
+/* ---------------------------------------------------------------------
+   Hamburger toggle button (mobile)
+   Hidden on desktop widths in responsive.css; visible by default here
+   so the nav still functions before the breakpoint stylesheet loads.
+   --------------------------------------------------------------------- */
+.nav__toggle {
+  position: relative;
+  z-index: var(--z-overlay);
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+}
+
+.nav__toggle:hover {
+  background: var(--color-surface-hover);
+}
+
+.nav__toggle-bar {
+  display: block;
+  width: 20px;
+  height: 2px;
+  border-radius: var(--radius-full);
+  background: var(--color-text);
+  transition:
+    transform var(--duration-base) var(--ease-standard),
+    opacity var(--duration-base) var(--ease-standard);
+}
+
+/* Hamburger -> X transform when open. React toggles aria-expanded and
+   adds `.nav__toggle--open` on the button itself. */
+.nav__toggle--open .nav__toggle-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav__toggle--open .nav__toggle-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.nav__toggle--open .nav__toggle-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ---------------------------------------------------------------------
+   Mobile menu closed / open states
+   Mobile-first: `.nav__links` is an off-canvas panel by default; the
+   `--open` modifier reveals it. responsive.css switches `.nav__links`
+   back to the inline desktop layout above `--bp-md` and hides
+   `.nav__toggle` at that point.
+   --------------------------------------------------------------------- */
+.nav__links {
+  position: fixed;
+  inset: var(--nav-height-mobile) 0 0 0;
+  z-index: var(--z-overlay);
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 0;
+  padding: var(--space-6) var(--space-5);
+  background: var(--color-bg);
+  border-top: var(--border-width) solid var(--color-border);
+  transform: translateX(100%);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    transform var(--duration-slow) var(--ease-standard),
+    opacity var(--duration-slow) var(--ease-standard),
+    visibility 0s linear var(--duration-slow);
+}
+
+.nav__links--open {
+  transform: translateX(0);
+  opacity: 1;
+  visibility: visible;
+  transition:
+    transform var(--duration-slow) var(--ease-standard),
+    opacity var(--duration-slow) var(--ease-standard),
+    visibility 0s linear 0s;
+}
+
+.nav__links--open .nav__link {
+  width: 100%;
+  padding-block: var(--space-4);
+  font-size: var(--fs-lg);
+  border-bottom: var(--border-width) solid var(--color-border);
+}
+
+.nav--menu-open {
+  border-bottom-color: transparent;
+}
+
+/* Prevent body scroll behind the open mobile menu; React toggles this
+   class on <body> alongside the nav state. */
+body.nav-scroll-lock {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav__links,
+  .nav__links--open,
+  .nav__toggle-bar,
+  .nav__link::after {
+    transition-duration: 0.01ms;
+  }
+}

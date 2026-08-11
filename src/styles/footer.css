@@ -1,0 +1,35 @@
+/* ==========================================================================
+   footer.css
+   Site footer: copyright line + back-to-top link.
+   ========================================================================== */
+
+.footer {
+  border-top: var(--border-width) solid var(--color-border);
+  background: var(--color-bg-raised);
+  padding-block: var(--space-6);
+}
+
+.footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.footer__copy {
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+}
+
+.footer__back-to-top {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--color-text-secondary);
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+
+.footer__back-to-top:hover,
+.footer__back-to-top:focus-visible {
+  color: var(--color-accent);
+}
