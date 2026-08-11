@@ -4,43 +4,44 @@ import '../styles/skills.css';
 const SKILL_CATEGORIES = [
   {
     id: 'category-1',
-    name: '[PLACEHOLDER: category name, e.g. Languages]',
+    name: 'Program & Delivery',
     skills: [
-      '[PLACEHOLDER: skill]',
-      '[PLACEHOLDER: skill]',
-      '[PLACEHOLDER: skill]',
-      '[PLACEHOLDER: skill]',
-      '[PLACEHOLDER: skill]',
+      'Agile & Scrum',
+      'SAFe (PI Planning, ARTs)',
+      'Kanban',
+      'Jira',
+      'Cross-team dependency & risk management',
     ],
   },
   {
     id: 'category-2',
-    name: '[PLACEHOLDER: category name, e.g. Frameworks & Libraries]',
+    name: 'Stakeholder & Communication',
     skills: [
-      '[PLACEHOLDER: skill]',
-      '[PLACEHOLDER: skill]',
-      '[PLACEHOLDER: skill]',
-      '[PLACEHOLDER: skill]',
+      'Customer & stakeholder demos',
+      'Technical documentation & migration guides',
+      'Translating tradeoffs for non-technical audiences',
+      'Mentoring & onboarding',
     ],
   },
   {
     id: 'category-3',
-    name: '[PLACEHOLDER: category name, e.g. Tools & Platforms]',
+    name: 'Technical Fluency',
     skills: [
-      '[PLACEHOLDER: skill]',
-      '[PLACEHOLDER: skill]',
-      '[PLACEHOLDER: skill]',
-      '[PLACEHOLDER: skill]',
-      '[PLACEHOLDER: skill]',
+      'Java & Spring Boot',
+      'React & REST APIs',
+      'AWS (S3, SNS, SQS)',
+      'SQL (Oracle, PostgreSQL)',
+      'Security fundamentals (OAuth 2.0, JWT)',
     ],
   },
   {
     id: 'category-4',
-    name: '[PLACEHOLDER: category name, e.g. Practices & Concepts]',
+    name: 'Domain & Compliance',
     skills: [
-      '[PLACEHOLDER: skill]',
-      '[PLACEHOLDER: skill]',
-      '[PLACEHOLDER: skill]',
+      'Federal / regulated program delivery',
+      'Regulatory requirements translation',
+      'Section 508 accessibility',
+      'Security & CVE remediation',
     ],
   },
 ];
@@ -80,8 +81,10 @@ function Skills() {
             <span className="section__number">02</span> Skills
           </h2>
           <p className="section__description">
-            [PLACEHOLDER: 1-sentence summary of your overall technical range
-            and toolkit.]
+            A technical project manager&rsquo;s toolkit: agile delivery
+            practices, stakeholder communication, and enough engineering
+            depth to run a credible conversation with the team actually
+            writing the code.
           </p>
         </header>
 

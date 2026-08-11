@@ -70,3 +70,23 @@ Both files used `var(--token, <hardcoded fallback>)` throughout with tokens that
 - `npm install` succeeds with the new `package.json`.
 - Every relative import (`../hooks/*`, `../components/*`, `../styles/*`) across `src/` resolves to an existing file, and every named import matches an actual named export.
 - `npm run build` could not be run to completion in this sandbox (Node v10.24.1 present; Vite 5 requires Node ^18/^20/>=22) — flagging this as an environment limitation for whoever picks this up next, not a code issue.
+
+## Update — 2026-08-11: re-review after content fill-in + Skills CSS fix
+
+**Scope:** the site owner's placeholder content was replaced with real bio/employer/testimonial/contact data throughout (`About`, `Contact`, `Education`, `Experience`, `Footer`, `Hero`, `Nav`, `Projects`, `Skills`, `Testimonials`, `index.html`), and a Skills-section layout bug was fixed. Re-reviewed the full working-tree diff against `origin/main` plus ran `npm run build` end-to-end (Node v20.20.2 now available, unlike the earlier sandbox — build succeeds cleanly, 57 modules, no errors/warnings).
+
+### Issues found and fixed
+
+**1. `skills.css` chip-overflow bug.** `.skills-chip` had `white-space: nowrap` with no `max-width`; since flex items don't shrink below their content size by default, any skill label too long for its card (e.g. "Cross-team dependency & risk management", "Security fundamentals (OAuth 2.0, JWT)") overflowed the card's right edge and visually overlapped the next column instead of wrapping. **Fixed** in `src/styles/skills.css`: removed `white-space: nowrap`, added `max-width: 100%`, bumped `line-height` from `1` to `1.3` for readable wrapped text. Verified visually in-browser at desktop width — all chips now wrap inside their own card.
+
+**2. `Experience.jsx` conflicting employment dates.** Role 1 ("Tech Lead") was dated `2022 — Present` while role 2 ("Senior Software Developer", same employer) directly below it was also dated `Jan. 2019 — Present`, showing two concurrent open-ended titles at the same company — inconsistent with `About.jsx`'s own claim of "promoted to tech lead within five years" of the 2017 start. **Fixed**: role 2's end date changed to `Jan. 2019 — 2022`, matching role 1's start year.
+
+**3. `package-lock.json` corruption.** The lockfile had been silently downgraded to `lockfileVersion: 1` (dropping the `packages` tree and per-dependency `license`/`engines` metadata) and its `name` field was stale (`portfolio-site` instead of `package.json`'s `personal-portfolio`) — almost certainly written by an older/different npm than the v10.8.2 on this machine, which normally emits `lockfileVersion: 3`. A v1 lockfile risks `npm ci` re-resolving unexpectedly on CI or a teammate's machine, and loses fidelity for tooling that reads the `packages` tree. **Fixed**: deleted and regenerated via `npm install` with the current npm — confirmed back to `lockfileVersion: 3` with a `packages` tree and the correct `name`.
+
+### Checked, no code change (content/asset gaps — expected per the project's placeholder convention, left for the site owner)
+
+- `About.jsx` portrait `<img>` and every `Projects.jsx` project-card `<img>` still use the literal `[PLACEHOLDER: ...]` string as `src`, which the browser requests verbatim and fails to load (visible as a broken-image icon). This is the project's documented `[PLACEHOLDER: ...]` convention working as intended (see `CLAUDE.md` § Placeholder content) — not a code bug — but is called out here since it's the one remaining visible gap once real images are ready.
+- `Education.jsx`'s second entry (certification) is still fully placeholder text; the component's own placeholder copy already notes it should be removed if no certification is being pursued.
+
+### Non-blocking, out of scope for this review
+- `npm audit` reports 2 vulnerabilities (1 moderate, 1 high) in `esbuild`/`vite` (dev-server-only request-forgery issue, not exploitable in production builds); fixing requires a major Vite version bump (`vite@8`), which is a breaking dependency change outside this review's scope — flagged for the site owner to decide on separately.

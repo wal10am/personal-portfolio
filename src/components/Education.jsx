@@ -4,17 +4,17 @@ import '../styles/education.css';
 const EDUCATION = [
   {
     id: 'education-1',
-    degree: '[PLACEHOLDER: Degree, e.g. B.S. in Computer Science]',
-    school: '[PLACEHOLDER: School / University Name]',
-    dates: '[PLACEHOLDER: YYYY — YYYY]',
-    detail: '[PLACEHOLDER: relevant coursework, honors, or activities]',
+    degree: 'B.S. in Computer Science',
+    school: 'College of Charleston',
+    dates: 'Aug. 2013 — May 2016',
+    detail: 'Foundation in software engineering that grounds 9 years of hands-on delivery experience.',
   },
   {
     id: 'education-2',
-    degree: '[PLACEHOLDER: Certification / credential name]',
-    school: '[PLACEHOLDER: Issuing organization]',
+    degree: '[PLACEHOLDER: PM certification, e.g. PMP or CAPM, if pursued]',
+    school: '[PLACEHOLDER: issuing organization]',
     dates: '[PLACEHOLDER: Mon YYYY]',
-    detail: '[PLACEHOLDER: brief description of the certification]',
+    detail: '[PLACEHOLDER: brief description, or remove this entry if not pursuing a certification]',
   },
 ];
 
@@ -51,8 +51,8 @@ function Education() {
             <span className="section__number">06</span> Education
           </h2>
           <p className="section__description">
-            [PLACEHOLDER: 1-sentence summary of your education/training
-            background.]
+            A computer science degree, plus 9 years of on-the-job program
+            and delivery experience.
           </p>
         </header>
 

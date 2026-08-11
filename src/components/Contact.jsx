@@ -4,18 +4,13 @@ import '../styles/contact.css';
 const CONTACT_LINKS = [
   {
     id: 'email',
-    label: '[PLACEHOLDER: you@example.com]',
-    href: 'mailto:[PLACEHOLDER: you@example.com]',
-  },
-  {
-    id: 'github',
-    label: 'GitHub',
-    href: '[PLACEHOLDER: https://github.com/your-username]',
+    label: 'wal10.aaron@gmail.com',
+    href: 'mailto:wal10.aaron@gmail.com',
   },
   {
     id: 'linkedin',
     label: 'LinkedIn',
-    href: '[PLACEHOLDER: https://linkedin.com/in/your-profile]',
+    href: 'https://www.linkedin.com/in/aaron-walton/',
   },
 ];
 
@@ -35,9 +30,10 @@ function Contact() {
             <span className="section__number">07</span> Contact
           </h2>
           <p className="section__description">
-            [PLACEHOLDER: 1-2 sentence invitation to reach out — what
-            you&rsquo;re open to, e.g. new roles, freelance work, or
-            collaboration.]
+            I&rsquo;m open to Technical Project Manager and Program Manager
+            roles. Happy to talk through how 9 years of hands-on delivery
+            experience translates into planning, coordinating, and
+            shipping software programs.
           </p>
         </header>
 

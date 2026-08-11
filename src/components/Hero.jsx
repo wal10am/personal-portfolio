@@ -13,15 +13,17 @@ function Hero() {
       />
       <div className="container hero__inner">
         <span className="eyebrow">
-          [PLACEHOLDER: e.g. Available for new opportunities]
+          Open to Technical Project / Program Manager roles
         </span>
         <h1 className="hero__title">
-          Hi, I&rsquo;m <span className="text-accent">[PLACEHOLDER: Your Name]</span>
+          Hi, I&rsquo;m <span className="text-accent">Aaron Walton</span>
         </h1>
         <p className="hero__subtitle">
-          [PLACEHOLDER: Title, e.g. Software Engineer] &mdash; [PLACEHOLDER:
-          1-2 sentence tagline about what you build and who you build it
-          for.]
+          Technical Project Manager &mdash; 9 years as a software engineer
+          and tech lead, now channeling that hands-on delivery experience
+          into leading cross-team programs, de-risking migrations, and
+          keeping technical initiatives on track from planning to
+          production.
         </p>
         <div className="hero__actions">
           <a className="hero__cta hero__cta--primary" href="#projects">

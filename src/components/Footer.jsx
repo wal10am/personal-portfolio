@@ -7,7 +7,7 @@ function Footer() {
     <footer className="footer">
       <div className="container footer__inner">
         <p className="footer__copy">
-          &copy; {CURRENT_YEAR} [PLACEHOLDER: Your Name]. All rights
+          &copy; {CURRENT_YEAR} Aaron Walton. All rights
           reserved.
         </p>
         <a className="footer__back-to-top" href="#top">

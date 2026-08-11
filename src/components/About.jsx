@@ -31,19 +31,31 @@ function About() {
           </div>
           <div className="about-copy">
             <p>
-              [PLACEHOLDER: 2-3 sentence introduction — who you are, what
-              you do, and what you care about professionally.]
+              I&rsquo;m a technical project manager with 9 years of software
+              engineering experience &mdash; the last several as a tech
+              lead coordinating delivery across multiple teams. I care
+              about the same thing whether I&rsquo;m writing code or
+              running a program: shipping the thing that actually solves
+              the problem, on a timeline the team can hit without burning
+              out.
             </p>
             <p>
-              [PLACEHOLDER: 2-3 sentence paragraph about your background,
-              how you got into the field, and what drives you.]
+              I started as a junior developer at Booz Allen Hamilton on
+              U.S. Department of Veterans Affairs contracts in 2017 and was
+              promoted to tech lead within five years. Along the way I led
+              a shared-library migration across 5 repositories used by
+              every team on the program, coordinated a multi-repo security
+              remediation effort, and was regularly pulled into
+              stakeholder-facing work &mdash; customer demos, cross-team
+              documentation, prioritization calls &mdash; because I could
+              translate technical tradeoffs into terms non-technical
+              stakeholders could act on. That&rsquo;s the work I want to do
+              full-time.
             </p>
             <ul className="about-highlights">
-              <li>[PLACEHOLDER: a quick fact, e.g. years of experience]</li>
-              <li>
-                [PLACEHOLDER: a quick fact, e.g. based in / open to remote]
-              </li>
-              <li>[PLACEHOLDER: a quick fact, e.g. current focus/interest]</li>
+              <li>9 years of software delivery experience &mdash; junior developer to tech lead in 5 years</li>
+              <li>Led migration &amp; remediation initiatives across 5+ repositories and teams at once</li>
+              <li>Remote-based, open to remote or hybrid roles</li>
             </ul>
           </div>
         </div>

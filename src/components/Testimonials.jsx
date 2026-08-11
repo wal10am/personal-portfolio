@@ -5,26 +5,26 @@ const TESTIMONIALS = [
   {
     id: 'testimonial-1',
     quote:
-      '[PLACEHOLDER: 1-3 sentence testimonial quote about working with this person — their skills, impact, or collaboration style.]',
-    name: '[PLACEHOLDER: Name]',
-    title: '[PLACEHOLDER: Job title]',
-    company: '[PLACEHOLDER: Company]',
+      'When our team tech lead was out on vacation or sick leave, you stepped in as the back-up/acting tech lead and covered the role well. You worked with our less experienced devs and helped provide technical leadership and guidance so the team wouldn’t miss a beat.',
+    name: 'Justin Baden',
+    title: 'Scrum Master',
+    company: 'Booz Allen Hamilton',
   },
   {
     id: 'testimonial-2',
     quote:
-      '[PLACEHOLDER: 1-3 sentence testimonial quote about working with this person — their skills, impact, or collaboration style.]',
-    name: '[PLACEHOLDER: Name]',
-    title: '[PLACEHOLDER: Job title]',
-    company: '[PLACEHOLDER: Company]',
+      'Aaron is the ideal team member — he’s hardworking, a team player, and isn’t afraid to jump in and share his thoughts in team discussions. I worked with Aaron as the team Scrum Master and was consistently impressed by his communication and willingness to go the extra mile to get high-priority work turned around quickly.',
+    name: 'Sarah Walsh',
+    title: 'Scrum Master',
+    company: 'Booz Allen Hamilton',
   },
   {
     id: 'testimonial-3',
     quote:
-      '[PLACEHOLDER: 1-3 sentence testimonial quote about working with this person — their skills, impact, or collaboration style.]',
-    name: '[PLACEHOLDER: Name]',
-    title: '[PLACEHOLDER: Job title]',
-    company: '[PLACEHOLDER: Company]',
+      'His proficiency was at such a high level that it was recognized by our project’s BA leadership, leading them to ask for his help in preparing for and participating in very important customer demos where he did a fantastic job.',
+    name: 'Matthew Fetyko',
+    title: 'Colleague, VA Program',
+    company: 'Booz Allen Hamilton',
   },
 ];
 
@@ -64,8 +64,8 @@ function Testimonials() {
             <span className="section__number">05</span> Testimonials
           </h2>
           <p className="section__description">
-            [PLACEHOLDER: 1-sentence summary introducing the testimonials
-            below.]
+            Feedback from scrum masters and teammates on how I actually
+            work with a team, in their own words.
           </p>
         </header>
         <div className="testimonials-grid">

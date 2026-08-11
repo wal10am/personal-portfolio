@@ -6,7 +6,7 @@ const NAV_LINKS = [
   { id: 'about', label: 'About' },
   { id: 'skills', label: 'Skills' },
   { id: 'experience', label: 'Experience' },
-  { id: 'projects', label: 'Projects' },
+  { id: 'projects', label: 'Programs' },
   { id: 'testimonials', label: 'Testimonials' },
   { id: 'education', label: 'Education' },
   { id: 'contact', label: 'Contact' },
@@ -44,7 +44,7 @@ function Nav() {
           <span className="nav__brand-mark" aria-hidden="true">
             {'</>'}
           </span>
-          [PLACEHOLDER: name/logo]
+          Aaron Walton
         </a>
 
         <button
