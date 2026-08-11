@@ -57,12 +57,9 @@ docs/
 
 All content renders unconditionally in JSX (nothing is gated behind post-hydration state), so the page has meaningful content even before React hydrates. The site is responsive from 320px through 1440px+ and targets basic accessibility out of the box: semantic HTML, alt-text placeholders, `aria-label`/`aria-expanded`/`aria-controls` on the nav and hamburger button, and `prefers-reduced-motion` support everywhere an animation or transform hook is used.
 
-## What the review agents found
+## Review history
 
-- **Code review** (`docs/reviews/code-review.md`): the project was originally missing about half its required files (several components, all five hooks, and root config) — those were created to match the existing conventions. Two components had section markup that didn't match the shared CSS scaffolding, and two stylesheets referenced design-token names that don't exist in `variables.css` and silently fell back to hardcoded values — both classes of issue were fixed. `npm install` succeeds; `npm run build` could not be exercised end-to-end in that sandbox (the available Node runtime was too old for Vite 5) and is worth a real build check before you rely on this scaffold.
-- **Security review** (`docs/security-reviews/security-review.md`): **PASS**, no issues found — no hardcoded secrets/keys, no `dangerouslySetInnerHTML`, no hardcoded environment-specific URLs/ports, `.gitignore` correctly excludes `node_modules`, `dist`, and `.env*` (while re-including `.env.example`), and `.env.example` contains no real values.
-
-Read both docs in full before you extend this project — they're the most accurate record of what's actually implemented versus what's still a placeholder.
+Findings from the build pipeline's Code Review and Security Review agents, including follow-up passes as the project evolves, live in `docs/reviews/` and `docs/security-reviews/` — treat those as the up-to-date record of what's implemented versus what's still a placeholder.
 
 ## Before you publish
 
